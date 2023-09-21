@@ -14,9 +14,20 @@ app.listen(3000, async () => {
     console.log('mongodb connected');
     let serv = new service();
     await serv.create({
-        content : 'Done with the #refactor ?'
+        content : 'Captial #CODE and #Updating'
     })
 
+
+
+
+
+   
+    
+
+
+
+
+    
     // let's try to create a tweet after service
     /* 
     const service = new TweetService();
