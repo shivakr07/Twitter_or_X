@@ -1,17 +1,24 @@
-const express = require("express");
-
-const connect = require('./config/database');
+import express from "express";
+import { connect }  from './config/database.js';
 const app = express();
 
-const TweetRepository = require('./repository/index');
-const TweetService = require('./services/tweet-service');
+import service from './services/tweet-service.js'
 
-app.listen(3000, async() => {
+
+// import TweetRepository from './repository/index';
+// import TweetService from './services/tweet-service';
+
+app.listen(3000, async () => {
     console.log("server started");
     await connect();
     console.log('mongodb connected');
-    
+    let serv = new service();
+    await serv.create({
+        content : 'Done with the #refactor ?'
+    })
+
     // let's try to create a tweet after service
+    /* 
     const service = new TweetService();
     const tweet = await service.create({
         // content : 'i am #excited and it is going to be #fun #newjob and #lovelife'
@@ -19,7 +26,7 @@ app.listen(3000, async() => {
         content : 'my #working twitter ?'
     });
     console.log(tweet); // only tag processing should be created as others are already in our db
-
+    */
 
 
     //  lets try findByName()

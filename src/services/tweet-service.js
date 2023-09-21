@@ -1,6 +1,5 @@
-const { TweetRepository } = require('../repository/index')
-const { HashtagRepository } = require('../repository/index')
-
+import { TweetRepository, HashtagRepository } from '../repository/index.js' 
+ 
 class TweetService {
     constructor() {
         this.tweetRepository = new TweetRepository();
@@ -12,16 +11,21 @@ class TweetService {
         const tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag) => tag.substring(1)); // this regex extracts hashtags
         // console.log('current tagst',tags);
         const tweet = await this.tweetRepository.create(data);
+
         //todo create hashtags and add here
         let alreadyPresentTags = await  this.hashtagRepository.findByName(tags);
         console.log(alreadyPresentTags);
         let titleOfPresentTags = alreadyPresentTags.map(tags => tags.title);
+
+
         // console.log("already present tags", alreadyPresentTags);
         let newTags = await tags.filter(tag => !titleOfPresentTags.includes(tag));
         newTags = newTags.map(tag => {
             // console.log("Hello", newTags)
             return {title : tag, tweets : [tweet.id]}
         });
+
+        
         // console.log(newTags)
         const response = await this.hashtagRepository.bulkCreate(newTags);
         // console.log('i am result',response);
@@ -41,7 +45,7 @@ class TweetService {
     }
 }
  
-module.exports = TweetService;
+export default TweetService;
 
 
  

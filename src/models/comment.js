@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const commentSchema = new mongoose.Schema({
+const commentSchema = new mongoose.connectionSchema({
     content : {
         type : String,
         required : true, 
@@ -12,5 +12,22 @@ const commentSchema = new mongoose.Schema({
 
 const Comment = mongoose.model('Comment', commentSchema);
 
-module.exports = Comment;
+export default Comment;
+
+
+
+
+
+// const mongoose = require('mongoose');
+// const commentSchema = new mongoose.Schema({
+//     content : {
+//         type : String,
+//         required : true, 
+//     },
+//     userEmail : {
+//         type : String
+//     },
+// }, { timestamps : true});
+// const Comment = mongoose.model('Comment', commentSchema);
+// module.exports = Comment;
 
