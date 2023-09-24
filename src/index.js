@@ -1,8 +1,17 @@
 import express from "express";
-import { connect }  from './config/database.js';
-const app = express();
+import bodyParser from "body-parser";
 
-import service from './services/tweet-service.js'
+import { connect }  from './config/database.js';
+
+import apiRoutes from './routes/index.js'
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));
+
+app.use('/api', apiRoutes);
+
+
+// import service from './services/tweet-service.js'
 
 
 // import TweetRepository from './repository/index';
@@ -12,10 +21,10 @@ app.listen(3000, async () => {
     console.log("server started");
     await connect();
     console.log('mongodb connected');
-    let serv = new service();
-    await serv.create({
-        content : 'Captial #CODE and #Updating'
-    })
+    // let serv = new service();
+    // await serv.create({
+    //     content : 'Captial #CODE and #Updating'
+    // })
 
 
 
@@ -45,5 +54,5 @@ app.listen(3000, async () => {
     // const response = await repo.findByName(['Trend', 'Excited']);
     // console.log(response);
 
-})
+});
 
