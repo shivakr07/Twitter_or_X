@@ -28,14 +28,7 @@ app.listen(3000, async () => {
 
 
 
-
-
-   
-    
-
-
-
-
+// this is the am
     
     // let's try to create a tweet after service
     /* 
