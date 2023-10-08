@@ -4,6 +4,11 @@ import bodyParser from "body-parser";
 import { connect }  from './config/database.js';
 
 import apiRoutes from './routes/index.js'
+
+import UserRepository from "./repository/user-repository.js";
+import TweetRepository from "./repository/tweet-repository.js";
+import LikeService from "./services/like-service.js"
+
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -46,6 +51,20 @@ app.listen(3000, async () => {
     // let repo = new HashtagRepository();
     // const response = await repo.findByName(['Trend', 'Excited']);
     // console.log(response);
+
+    // const userRepo = new UserRepository();
+    // const tweetRepo = new TweetRepository();
+    // const tweets = await tweetRepo.getAll(0, 10);
+    // console.log(tweets);
+
+    // const user = await userRepo.create({
+    //     email : 'Evans@admin.com',
+    //     password : '123456',
+    //     name : 'Evans'
+    // });
+    // // now we have user with thsi and we want to create like with this
+    // const likeService = new LikeService();
+    // await likeService.toggleLike(tweets[0].id, 'Tweet', user.id);
 
 });
 
